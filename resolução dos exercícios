@@ -1,0 +1,564 @@
+package main
+
+import "fmt"
+
+func main() {
+	numbers := []int{1, 2, 3, 4, 5}
+	average := calculateAverage(numbers)
+	fmt.Println("Média:", average)
+}
+
+func calculateAverage(numbers []int) float64 {
+	sum := 0
+	for _, num := range numbers {
+		sum += num
+	}
+	average := float64(sum) / float64(len(numbers))
+	return average
+}
+
+package main
+
+import "fmt"
+
+func main() {
+	word := "Hello"
+	vowelCount := countVowels(word)
+	fmt.Println("Quantidade de vogais:", vowelCount)
+}
+
+func countVowels(word string) int {
+	vowels := []rune{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+	count := 0
+	for _, char := range word {
+		for _, vowel := range vowels {
+			if char == vowel {
+				count++
+				break
+			}
+		}
+	}
+	return count
+}
+
+package main
+
+import "fmt"
+
+func main() {
+	strings := []string{"Hello", "World", "!"}
+	concatenated := concatenateStrings(strings)
+	fmt.Println("Concatenação:", concatenated)
+}
+
+func concatenateStrings(strings []string) string {
+	result := ""
+	for _, str := range strings {
+		result += str
+	}
+	return result
+}
+
+package main
+
+import "fmt"
+
+func main() {
+	numbers := []int{5, 3, 9, 1, 7}
+	secondLargest := findSecondLargest(numbers)
+	fmt.Println("Segundo maior valor:", secondLargest)
+}
+
+func findSecondLargest(numbers []int) int {
+	largest := numbers[0]
+	secondLargest := numbers[0]
+	for _, num := range numbers {
+		if num > largest {
+			secondLargest = largest
+			largest = num
+		} else if num > secondLargest && num < largest {
+			secondLargest = num
+		}
+	}
+	return secondLargest
+}
+
+package main
+
+import "fmt"
+
+func main() {
+	numbers := []int{1, 3, 5, 7, 9}
+	target := 5
+	position := findPosition(numbers, target)
+	fmt.Println("Posição:", position)
+}
+
+func findPosition(numbers []int, target int) int {
+	for i, num := range numbers {
+		if num == target {
+			return i
+		}
+	}
+	return -1
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
+func main() {
+	strings := []string{"Hello", "World", "!"}
+	concatenated, err := concatenateWithComma(strings)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Concatenação:", concatenated)
+	}
+}
+
+func concatenateWithComma(strings []string) (string, error) {
+	if len(strings) == 0 {
+		return "", errors.New("O slice está vazio")
+	}
+	result := strings.Join(strings, ",")
+	return result, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	numbers := []int{1, 2, 3, 4, 5}
+	doubled, err := applyFunction(numbers, double)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Resultado:", doubled)
+	}
+}
+
+func double(num int) int {
+	return num * 2
+}
+
+func applyFunction(numbers []int, fn func(int) int) ([]int, error) {
+	if len(numbers) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+	result := make([]int, len(numbers))
+	for i, num := range numbers {
+		result[i] = fn(num)
+	}
+	return result, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	numbers := []int{1, 2, 3, 4, 5}
+	evens, err := filterEven(numbers)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Números pares:", evens)
+	}
+}
+
+func filterEven(numbers []int) ([]int, error) {
+	if len(numbers) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+	evens := make([]int, 0)
+	for _, num := range numbers {
+		if num%2 == 0 {
+			evens = append(evens, num)
+		}
+	}
+	return evens, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
+func main() {
+	sentence := "Hello World!"
+	words, err := extractWords(sentence)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Palavras:", words)
+	}
+}
+
+func extractWords(sentence string) ([]string, error) {
+	if len(sentence) == 0 {
+		return nil, errors.New("A string está vazia")
+	}
+	words := strings.Split(sentence, " ")
+	return words, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"sort"
+)
+
+func main() {
+	numbers := []int{3, 1, 4, 1, 5, 9, 2, 6}
+	sorted, err := sortSlice(numbers)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Ordenado:", sorted)
+	}
+}
+
+func sortSlice(numbers []int) ([]int, error) {
+	if len(numbers) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+	sorted := make([]int, len(numbers))
+	copy(sorted, numbers)
+	sort.Ints(sorted)
+	return sorted, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"math"
+)
+
+func main() {
+	number := 17
+	isPrime, err := checkPrime(number)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("É primo?", isPrime)
+	}
+}
+
+func checkPrime(number int) (bool, error) {
+	if number < 0 {
+		return false, errors.New("O número é negativo")
+	}
+	if number < 2 {
+		return false, nil
+	}
+	sqrt := int(math.Sqrt(float64(number)))
+	for i := 2; i <= sqrt; i++ {
+		if number%i == 0 {
+			return false, nil
+		}
+	}
+	return true, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strings"
+	"unicode"
+)
+
+func main() {
+	strings := []string{"Hello", "world", "Go", "Language"}
+	filtered, err := filterUppercase(strings)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Strings filtradas:", filtered)
+	}
+}
+
+func filterUppercase(strings []string) ([]string, error) {
+	if len(strings) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+	filtered := make([]string, 0)
+	for _, str := range strings {
+		if len(str) > 0 && unicode.IsUpper([]rune(str)[0]) {
+			filtered = append(filtered, str)
+		}
+	}
+	return filtered, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	number := 12345
+	digitSum, err := sumDigits(number)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Soma dos dígitos:", digitSum)
+	}
+}
+
+func sumDigits(number int) (int, error) {
+	if number < 0 {
+		return 0, errors.New("O número é negativo")
+	}
+	digitSum := 0
+	strNumber := strconv.Itoa(number)
+	for _, digit := range strNumber {
+		digitValue, _ := strconv.Atoi(string(digit))
+		digitSum += digitValue
+	}
+	return digitSum, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	numbers1 := []int{1, 2, 3, 4, 5}
+	numbers2 := []int{4, 5, 6, 7, 8}
+	common, err := findCommonNumbers(numbers1, numbers2)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Números em comum:", common)
+	}
+}
+
+func findCommonNumbers(numbers1, numbers2 []int) ([]int, error) {
+	if len(numbers1) == 0 || len(numbers2) == 0 {
+		return nil, errors.New("Um dos slices está vazio")
+	}
+	unique := make(map[int]bool)
+	common := make([]int, 0)
+	for _, num := range numbers1 {
+		unique[num] = true
+	}
+	for _, num := range numbers2 {
+		if unique[num] {
+			common = append(common, num)
+		}
+	}
+	return common, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	number := 5
+	numbers := []int{1, 2, 3, 4, 5}
+	isPresent, err := checkPresence(number, numbers)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Está presente?", isPresent)
+	}
+}
+
+func checkPresence(number int, numbers []int) (bool, error) {
+	if len(numbers) == 0 {
+		return false, errors.New("O slice está vazio")
+	}
+	for _, num := range numbers {
+		if num == number {
+			return true, nil
+		}
+	}
+	return false, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
+func main() {
+	word := "Hello"
+	modified, err := replaceVowels(word)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Modificado:", modified)
+	}
+}
+
+func replaceVowels(word string) (string, error) {
+	if len(word) == 0 {
+		return "", errors.New("A string está vazia")
+	}
+	vowels := []string{"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
+	for _, vowel := range vowels {
+		word = strings.ReplaceAll(word, vowel, "*")
+	}
+	return word, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"sort"
+)
+
+func main() {
+	strings := []string{"World", "Hello", "Go", "Language"}
+	sorted, err := sortStrings(strings)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Ordenado:", sorted)
+	}
+}
+
+func sortStrings(strings []string) ([]string, error) {
+	if len(strings) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+	sorted := make([]string, len(strings))
+	copy(sorted, strings)
+	sort.Strings(sorted)
+	return sorted, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	numbers := []int{1, 2, 3, 4, 5}
+	sum, err := applyAndSum(numbers, double)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Soma:", sum)
+	}
+}
+
+func double(num int) int {
+	return num * 2
+}
+
+func applyAndSum(numbers []int, fn func(int) int) (int, error) {
+	if len(numbers) == 0 {
+		return 0, errors.New("O slice está vazio")
+	}
+	sum := 0
+	for _, num := range numbers {
+		sum += fn(num)
+	}
+	return sum, nil
+}
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	number := 10
+	primes, err := findPrimes(number)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Primos:", primes)
+	}
+}
+
+func findPrimes(number int) ([]int, error) {
+	if number < 0 {
+		return nil, errors.New("O número é negativo")
+	}
+	primes := make([]int, 0)
+	for i := 2; i <= number; i++ {
+		isPrime := true
+		for j := 2; j < i; j++ {
+			if i%j == 0 {
+				isPrime = false
+				break
+			}
+		}
+		if isPrime {
+			primes = append(primes, i)
+		}
+	}
+	return primes, nil
+}
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	strings := []string{"Hello", "Go", "Language", "World"}
+	filtered, err := filterByLength(strings, 5)
+	if err != nil {
+		fmt.Println("Erro:", err)
+	} else {
+		fmt.Println("Filtrado:", filtered)
+	}
+}
+
+func filterByLength(strings []string, length int) ([]string, error) {
+	if len(strings) == 0 {
+		return nil, errors.New("O slice está vazio")
+	}
+	filtered := make([]string, 0)
+	for _, str := range strings {
+		if len(str) > length {
+			filtered = append(filtered, str)
+		}
+	}
+	return filtered, nil
+}
+
